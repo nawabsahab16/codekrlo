@@ -3,6 +3,8 @@ import { httpAction } from "./_generated/server";
 import { Webhook } from "svix";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { api,} from "./_generated/api";
+import { listenerCount } from "process";
+import { setDefaultAutoSelectFamilyAttemptTimeout } from "net";
 
 const http = httpRouter();
 
@@ -41,7 +43,7 @@ http.route({
       console.error("Error verifying webhook:", err);
       return new Response("Error occurred", { status: 400 });
     }
-
+   
     const eventType = evt.type;
     if (eventType === "user.created") {
       const { id, email_addresses, first_name, last_name } = evt.data;
