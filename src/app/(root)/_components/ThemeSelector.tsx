@@ -6,6 +6,7 @@ import { THEMES } from "../_constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { CircleOff, Cloud, Github, Laptop, Moon, Palette, Sun } from "lucide-react";
 
+
 const THEME_ICONS: Record<string, React.ReactNode> = {
   "vs-dark": <Moon className="size-4" />,
   "vs-light": <Sun className="size-4" />,
@@ -48,6 +49,7 @@ function ThemeSelector() {
           {currentTheme?.label}
         </span>
 
+
         <div
           className="relative w-4 h-4 rounded-full border border-gray-600 group-hover:border-gray-500 transition-colors"
           style={{ background: currentTheme?.color }}
@@ -80,7 +82,6 @@ function ThemeSelector() {
               `}
                 onClick={() => setTheme(t.id)}
               >
-            
                 <div
                   className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 
               group-hover:opacity-100 transition-opacity"
@@ -95,7 +96,6 @@ function ThemeSelector() {
                 >
                   {THEME_ICONS[t.id] || <CircleOff className="w-4 h-4" />}
                 </div>
-                
                 <span className="flex-1 text-left group-hover:text-white transition-colors">
                   {t.label}
                 </span>

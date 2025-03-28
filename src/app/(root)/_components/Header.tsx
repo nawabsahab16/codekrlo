@@ -25,6 +25,7 @@ async function Header() {
       >
         <div className="hidden lg:flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3 group relative">
+           
 
             <div
               className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg opacity-0 
@@ -40,7 +41,7 @@ async function Header() {
 
             <div className="flex flex-col">
               <span className="block text-lg font-semibold bg-gradient-to-r from-blue-400 via-blue-300 to-purple-400 text-transparent bg-clip-text">
-                CodeKrlo
+                CodeCraft
               </span>
               <span className="block text-xs text-blue-400/60 font-medium">
                 Interactive Code Editor

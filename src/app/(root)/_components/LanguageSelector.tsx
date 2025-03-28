@@ -24,6 +24,13 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleLanguageSelect = (langId: string) => {
+    if (!hasAccess && langId !== "javascript") return;
+
+    setLanguage(langId);
+    setIsOpen(false);
+  };
+
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -36,6 +43,7 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
        duration-200 border border-gray-800/50 hover:border-gray-700
        ${!hasAccess && language !== "javascript" ? "opacity-50 cursor-not-allowed" : ""}`}
       >
+        
         <div
           className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/5 
         rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
@@ -94,6 +102,8 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
                       ${language === lang.id ? "bg-blue-500/10 text-blue-400" : "text-gray-300"}
                       ${isLocked ? "opacity-50" : "hover:bg-[#262637]"}
                     `}
+                      onClick={() => handleLanguageSelect(lang.id)}
+                      disabled={isLocked}
                     >
                       <div
                         className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg 
@@ -110,8 +120,29 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
                           className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg 
                         opacity-0 group-hover:opacity-100 transition-opacity"
                         />
-    
+                        <Image
+                          width={24}
+                          height={24}
+                          src={lang.logoPath}
+                          alt={`${lang.label} logo`}
+                          className="w-full h-full object-contain relative z-10"
+                        />
                       </div>
+
+                      <span className="flex-1 text-left group-hover:text-white transition-colors">
+                        {lang.label}
+                      </span>
+
+                      {language === lang.id && (
+                        <motion.div
+                          className="absolute inset-0 border-2 border-blue-500/30 rounded-lg"
+                          transition={{
+                            type: "spring",
+                            bounce: 0.2,
+                            duration: 0.6,
+                          }}
+                        />
+                      )}
 
                       {isLocked ? (
                         <Lock className="w-4 h-4 text-gray-500" />
@@ -131,4 +162,4 @@ function LanguageSelector({ hasAccess }: { hasAccess: boolean }) {
     </div>
   );
 }
-export default LanguageSelector; 
+export default LanguageSelector;
