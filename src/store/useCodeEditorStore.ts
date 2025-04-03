@@ -4,7 +4,6 @@ import { create } from "zustand";
 import { Monaco } from "@monaco-editor/react";
 
 const getInitialState = () => {
-
   if (typeof window === "undefined") {
     return {
       language: "javascript",
@@ -102,6 +101,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
           set({ error: data.message, executionResult: { code, output: "", error: data.message } });
           return;
         }
+
         if (data.compile && data.compile.code !== 0) {
           const error = data.compile.stderr || data.compile.output;
           set({

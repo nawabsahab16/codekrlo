@@ -8,13 +8,15 @@ import Image from "next/image";
 import { RotateCcwIcon, ShareIcon, TypeIcon } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 import { EditorPanelSkeleton } from "./EditorPanelSkeleton";
-
+import useMounted from "@/hooks/useMounted";
+import ShareSnippetDialog from "./ShareSnippetDialog";
 
 function EditorPanel() {
   const clerk = useClerk();
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false);
   const { language, theme, fontSize, editor, setFontSize, setEditor } = useCodeEditorStore();
 
+  const mounted = useMounted();
 
   useEffect(() => {
     const savedCode = localStorage.getItem(`editor-code-${language}`);
@@ -43,6 +45,7 @@ function EditorPanel() {
     localStorage.setItem("editor-font-size", size.toString());
   };
 
+  if (!mounted) return null;
 
   return (
     <div className="relative">
@@ -58,6 +61,7 @@ function EditorPanel() {
             </div>
           </div>
           <div className="flex items-center gap-3">
+           
             <div className="flex items-center gap-3 px-3 py-2 bg-[#1e1e2e] rounded-lg ring-1 ring-white/5">
               <TypeIcon className="size-4 text-gray-400" />
               <div className="flex items-center gap-3">
@@ -83,6 +87,17 @@ function EditorPanel() {
               aria-label="Reset to default code"
             >
               <RotateCcwIcon className="size-4 text-gray-400" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setIsShareDialogOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg overflow-hidden bg-gradient-to-r
+               from-blue-500 to-blue-600 opacity-90 hover:opacity-100 transition-opacity"
+            >
+              <ShareIcon className="size-4 text-white" />
+              <span className="text-sm font-medium text-white ">Share</span>
             </motion.button>
           </div>
         </div>

@@ -5,11 +5,9 @@ export function EditorPanelSkeleton() {
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-xl blur-2xl" />
       <div className="relative bg-[#12121a]/90 backdrop-blur rounded-xl border border-white/[0.05] p-6 h-[600px]">
-    
         <div className="relative rounded-xl overflow-hidden ring-1 ring-white/[0.05]">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5" />
           <div className="h-[600px] bg-[#1e1e2e]/50 backdrop-blur-sm p-4">
-            
             {[...Array(15)].map((_, i) => (
               <div key={i} className="flex items-center gap-4 mb-3">
                 <div className={`w-12 h-4 bg-white/5 rounded`} />
@@ -21,6 +19,7 @@ export function EditorPanelSkeleton() {
             ))}
           </div>
         </div>
+
         <div className="mt-3 flex justify-end">
           <div className={`w-40 h-6 bg-white/5 rounded-lg`} />
         </div>
@@ -32,7 +31,6 @@ export function EditorPanelSkeleton() {
 export function OutputPanelSkeleton() {
   return (
     <div className="relative bg-[#181825] rounded-xl p-4 ring-1 ring-gray-800/50">
-   
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-[#1e1e2e] ring-1 ring-gray-800/50">
